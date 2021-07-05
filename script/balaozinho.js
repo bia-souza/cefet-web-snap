@@ -1,5 +1,4 @@
 const balaozinhoQuery = document.querySelector('#balaozinho');
-console.log(balaozinhoQuery);
 let marcacoesQuery = document.querySelectorAll('.marcacao');
 
 function preencheBalao (event) {
