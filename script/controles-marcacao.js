@@ -37,7 +37,30 @@ function atualizaControles(event) {
 	
     
 }
+
+function atualizaMarcacao() {
 	
+	let marcacaoQuery = document.querySelector('.marcacao.selecionada');
+    marcacaoQuery.style.left = document.querySelector('#x-da-marcacao').value + 'px';
+    marcacaoQuery.style.top = document.querySelector('#y-da-marcacao').value + 'px';
+    marcacaoQuery.style.width = document.querySelector('#largura-da-marcacao').value + 'px';
+    marcacaoQuery.style.height = document.querySelector('#altura-da-marcacao').value + 'px';
+	
+	
+    marcacaoQuery.dataset.titulo = document.querySelector('#titulo-da-marcacao').value;
+    marcacaoQuery.dataset.cor = document.querySelector('#cor-da-marcacao').value;
+	marcacaoQuery.dataset.conteudo = document.querySelector('#conteudo-da-marcacao').value;
+	
+	console.log(document.querySelector('[value="formato-retangular"]').checked);
+	if(document.querySelector('[value="formato-retangular"]').checked){
+		marcacaoQuery.dataset.formato = "formato-retangular";
+	}
+	else {
+		marcacaoQuery.dataset.formato = "formato-oval";
+	}
+	
+	 
+}
 
 visivelQuery.addEventListener('change', mudaVisibilidade);
 
@@ -45,3 +68,4 @@ for (let componente of componentesQuery) {
 	componente.addEventListener('click', atualizaControles);
 }
 
+document.addEventListener('change', atualizaMarcacao);
