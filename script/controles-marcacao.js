@@ -13,14 +13,15 @@ function mudaVisibilidade() {
 	
 }
 
-function atualizaControles(event) {
-	
+function switchMarcacao(event) {
 	let marcacaoAlvo = event.currentTarget;
 	let marcacaoAtual = document.querySelector('.selecionada');
-
 	marcacaoAtual.classList.remove('selecionada');
 	marcacaoAlvo.classList.add('selecionada');
+}
 
+function atualizaControles(marcacaoAlvo) {
+	
     document.querySelector('#x-da-marcacao').value = parseInt(marcacaoAlvo.style.left);
     document.querySelector('#y-da-marcacao').value = parseInt(marcacaoAlvo.style.top);
     document.querySelector('#largura-da-marcacao').value = parseInt(marcacaoAlvo.style.width);
@@ -62,10 +63,14 @@ function atualizaMarcacao() {
 	 
 }
 
+atualizaControles(document.querySelector('.marcacao.selecionada'));
 visivelQuery.addEventListener('change', mudaVisibilidade);
 
 for (let componente of componentesQuery) {
-	componente.addEventListener('click', atualizaControles);
+	componente.addEventListener('click', (event) => {
+		switchMarcacao(event);
+		atualizaControles(componente);
+	});
 }
 
 document.addEventListener('change', atualizaMarcacao);
